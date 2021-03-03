@@ -59,17 +59,17 @@
                               <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <HBox prefHeight="29.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                                  <children>
-                                    <RadioButton mnemonicParsing="false" text="CS">
+                                    <RadioButton fx:id="csButton" mnemonicParsing="false" onAction="#selectCS" text="CS">
                                        <HBox.margin>
                                           <Insets left="20.0" right="12.0" top="6.0" />
                                        </HBox.margin>
                                     </RadioButton>
-                                    <RadioButton mnemonicParsing="false" text="IT">
+                                    <RadioButton fx:id="itButton" mnemonicParsing="false" onAction="#selectIT" text="IT">
                                        <HBox.margin>
                                           <Insets right="12.0" top="6.0" />
                                        </HBox.margin>
                                     </RadioButton>
-                                    <RadioButton mnemonicParsing="false" text="ECE">
+                                    <RadioButton fx:id="eceButton" mnemonicParsing="false" onAction="#selectECE" text="ECE">
                                        <HBox.margin>
                                           <Insets top="6.0" />
                                        </HBox.margin>
@@ -78,7 +78,7 @@
                               </HBox>
                               <HBox prefHeight="28.0" prefWidth="230.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                                  <children>
-                                    <RadioButton mnemonicParsing="false" text="Part-Time">
+                                    <RadioButton fx:id="partTimeButton" mnemonicParsing="false" onAction="#selectPartTime" text="Part-Time">
                                        <HBox.margin>
                                           <Insets right="10.0" top="5.0" />
                                        </HBox.margin>
@@ -86,7 +86,7 @@
                                           <Insets left="10.0" />
                                        </padding>
                                     </RadioButton>
-                                    <RadioButton mnemonicParsing="false" text="Management">
+                                    <RadioButton fx:id="managementButton" mnemonicParsing="false" onAction="#selectMangement" text="Management">
                                        <HBox.margin>
                                           <Insets top="5.0" />
                                        </HBox.margin>
@@ -113,26 +113,26 @@
                               </HBox>
                               <Label text="Last Name" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                               <TextField GridPane.columnIndex="1" />
-                              <Button mnemonicParsing="false" text="CLEAR" GridPane.rowIndex="9" />
-                              <RadioButton mnemonicParsing="false" text="Full Time" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                              <Button fx:id="clearButton" mnemonicParsing="false" onAction="#clearScreen" text="CLEAR" GridPane.rowIndex="9" />
+                              <RadioButton fx:id="fullTimeButton" mnemonicParsing="false" onAction="#selectFullTime" text="Full Time" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                               <Label text="Annual Salary" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
                               <Label text="Hours Worked" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
                               <Label text="Rate" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
                               <DatePicker editable="true" prefWidth="200.0" promptText="Enter a date" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <RadioButton mnemonicParsing="false" text="Manager" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
-                              <RadioButton mnemonicParsing="false" text="Dept Head" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                              <RadioButton fx:id="managerButton" mnemonicParsing="false" onAction="#selectManager" text="Manager" GridPane.halignment="RIGHT" GridPane.rowIndex="8" />
+                              <RadioButton fx:id="deptHeadButton" mnemonicParsing="false" onAction="#selectDeptHead" text="Dept Head" GridPane.columnIndex="1" GridPane.rowIndex="8">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
                               </RadioButton>
-                              <RadioButton mnemonicParsing="false" text="Director" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
+                              <RadioButton fx:id="directorManagementButton" mnemonicParsing="false" onAction="#selectDirector" text="Director" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
                                  <GridPane.margin>
                                     <Insets right="40.0" />
                                  </GridPane.margin>
                               </RadioButton>
-                              <Button mnemonicParsing="false" text="Add Employee" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
-                              <Button mnemonicParsing="false" text="Remove Employee" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                              <Button mnemonicParsing="false" text="Set Employee" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
+                              <Button fx:id="addEmployeeButton" mnemonicParsing="false" onAction="#addEmployee" text="Add Employee" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
+                              <Button fx:id="removeEmployeeButton" mnemonicParsing="false" onAction="#removeEmployee" text="Remove Employee" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                              <Button fx:id="setEmployeeButton" mnemonicParsing="false" onAction="#setEmployee" text="Set Employee" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="9" />
                            </children>
                         </GridPane>
                      </children>

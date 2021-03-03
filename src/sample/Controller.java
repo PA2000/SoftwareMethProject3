@@ -2,6 +2,8 @@ package sample;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 
 public class Controller {
@@ -10,67 +12,106 @@ public class Controller {
     private TextArea messageArea;
 
     @FXML
-    void addEmployeeButton(ActionEvent event) {
-        System.out.println("Add Employee Button");
-    }
+    private RadioButton csButton;
 
     @FXML
-    void clearButton(ActionEvent event) {
-
-    }
+    private RadioButton itButton;
 
     @FXML
-    void csButton(ActionEvent event) {
-
-    }
+    private RadioButton eceButton;
 
     @FXML
-    void deptHeadButton(ActionEvent event) {
-
-    }
+    private RadioButton partTimeButton;
 
     @FXML
-    void directorManagement(ActionEvent event) {
-
-    }
+    private RadioButton managementButton;
 
     @FXML
-    void eceButton(ActionEvent event) {
-
-    }
+    private Button clearButton;
 
     @FXML
-    void fullTimeButton(ActionEvent event) {
-
-    }
+    private RadioButton fullTimeButton;
 
     @FXML
-    void itButton(ActionEvent event) {
-
-    }
+    private RadioButton managerButton;
 
     @FXML
-    void managementButton(ActionEvent event) {
-
-    }
+    private RadioButton deptHeadButton;
 
     @FXML
-    void managerButton(ActionEvent event) {
+    private RadioButton directorManagementButton;
+
+    @FXML
+    private Button addEmployeeButton;
+
+    @FXML
+    private Button removeEmployeeButton;
+
+    @FXML
+    private Button setEmployeeButton;
+
+    @FXML
+    void addEmployee(ActionEvent event) {
 
     }
 
     @FXML
-    void partTimeButton(ActionEvent event) {
+    void clearScreen(ActionEvent event) {
 
     }
 
     @FXML
-    void removeEmployeeButton(ActionEvent event) {
+    void removeEmployee(ActionEvent event) {
 
     }
 
     @FXML
-    void setEmployeeButton(ActionEvent event) {
+    void selectCS(ActionEvent event) {
+
+    }
+
+    @FXML
+    void selectDeptHead(ActionEvent event) {
+
+    }
+
+    @FXML
+    void selectDirector(ActionEvent event) {
+
+    }
+
+    @FXML
+    void selectECE(ActionEvent event) {
+
+    }
+
+    @FXML
+    void selectFullTime(ActionEvent event) {
+
+    }
+
+    @FXML
+    void selectIT(ActionEvent event) {
+
+    }
+
+    @FXML
+    void selectManager(ActionEvent event) {
+
+    }
+
+    @FXML
+    void selectMangement(ActionEvent event) {
+
+    }
+
+    @FXML
+    void selectPartTime(ActionEvent event) {
+
+    }
+
+    @FXML
+    void setEmployee(ActionEvent event) {
 
     }
 
