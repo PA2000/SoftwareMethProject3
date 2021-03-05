@@ -1,3 +1,5 @@
+package sample;
+
 /**
  * This class represents an employee who is in a management role and is a subclass of Fulltime. 
  * In addition to the attributes inherited from Fulltime, the class also contains management compensation, a payment, and a specific management role

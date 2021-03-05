@@ -1,3 +1,5 @@
+package sample;
+
 /**
  * This class represents the profile of an indidivdual employee. The profile contains the employee's name, the department they work in,
  * and the date they were hired.

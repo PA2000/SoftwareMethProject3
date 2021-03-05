@@ -1,3 +1,5 @@
+package sample;
+
 /**
  * This class represents the Fulltime employee and is a subclass of Employee. 
  * In addition to the attributes inherited from Employee, the class also contains a yearly salary and payment

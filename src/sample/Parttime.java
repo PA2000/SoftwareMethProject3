@@ -1,3 +1,5 @@
+package sample;
+
 /**
  * This class represents the Parttime employee and is a subclass of Employee. 
  * In addition to the attributes inherited from Employee, the class also contains an hourly wage, the number of hours worked, and payment.

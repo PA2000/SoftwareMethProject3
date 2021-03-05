@@ -1,3 +1,5 @@
+package sample;
+
 /**
  * This class represents the Company that has the employees. It is an array-based container class that
  * implements the employee database. It stores a list of employees as well as the number of employees
@@ -141,12 +143,14 @@ public class Company {
 	/**
 	 * This function prints earning statements for all employees based on the existing order in the employee database
 	 */
-	public void print() {
-		System.out.println("--Printing earning statements for all employees--");
+	public String print() {
+		//System.out.println("--Printing earning statements for all employees--");
+		String result = "";
 		for (int i = 0; i < numEmployee; i++) {
 			String output = emplist[i].toString();
-			System.out.println(output);
+			result += output;
 		}
+		return result;
 	}
 
 	/**
