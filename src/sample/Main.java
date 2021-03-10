@@ -13,7 +13,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Payroll Processor");
-        primaryStage.setScene(new Scene(root, 450, 600));
+        primaryStage.setScene(new Scene(root, 600, 600));
         primaryStage.setResizable(false);
         primaryStage.show();
     }

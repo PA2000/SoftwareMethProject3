@@ -3,16 +3,17 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane prefHeight="600.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<BorderPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <top>
       <TabPane prefHeight="406.0" prefWidth="450.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
           <Tab text="Employee Managment">
             <content>
-              <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="377.0" prefWidth="450.0">
+              <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="377.0" prefWidth="599.0">
                      <children>
-                        <GridPane alignment="CENTER" layoutX="25.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="345.0" prefWidth="400.0">
+                        <GridPane alignment="CENTER" layoutX="100.0" layoutY="16.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="345.0" prefWidth="400.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -137,7 +138,36 @@
           </Tab>
           <Tab text="Employee Database">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="89.0" layoutY="14.0" text="Select a command from the menu below">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <MenuBar layoutX="221.0" layoutY="67.0">
+                          <menus>
+                            <Menu mnemonicParsing="false" text="File">
+                              <items>
+                                <MenuItem mnemonicParsing="false" onAction="#importFile" text="Import File" />
+                                    <MenuItem mnemonicParsing="false" onAction="#exportFile" text="Export File" />
+                              </items>
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Print">
+                              <items>
+                                <MenuItem mnemonicParsing="false" onAction="#printAllEmployees" text="All Employees" />
+                                    <MenuItem mnemonicParsing="false" onAction="#printByDept" text="By Department" />
+                                    <MenuItem mnemonicParsing="false" onAction="#printByDateHired" text="By Date Hired" />
+                              </items>
+                            </Menu>
+                            <Menu mnemonicParsing="false" text="Payment">
+                              <items>
+                                <MenuItem mnemonicParsing="false" onAction="#doPaymentCalculation" text="Calculate Payment" />
+                              </items>
+                            </Menu>
+                          </menus>
+                        </MenuBar>
+                     </children></AnchorPane>
             </content>
           </Tab>
         </tabs>
@@ -146,7 +176,7 @@
    <bottom>
       <Pane prefHeight="199.0" prefWidth="450.0" BorderPane.alignment="CENTER">
          <children>
-            <TextArea fx:id="messageArea" layoutX="6.0" layoutY="5.0" prefHeight="180.0" prefWidth="438.0" style="-fx-border-color: blue;" />
+            <TextArea fx:id="messageArea" layoutX="5.0" layoutY="3.0" prefHeight="191.0" prefWidth="590.0" style="-fx-border-color: blue;" />
          </children>
       </Pane>
    </bottom>

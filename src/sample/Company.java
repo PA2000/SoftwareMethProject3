@@ -148,7 +148,7 @@ public class Company {
 		String result = "";
 		for (int i = 0; i < numEmployee; i++) {
 			String output = emplist[i].toString();
-			result += output;
+			result += "\n" + output;
 		}
 		return result;
 	}
@@ -156,8 +156,8 @@ public class Company {
 	/**
 	 * This function prints earning statements by department, with CS coming first followed by ECE, and then ending with IT
 	 */
-	public void printByDepartment() {
-		System.out.println("--Printing earning statements by department--");
+	public String printByDepartment() {
+		//System.out.println("--Printing earning statements by department--");
 		Employee[] sortedList = new Employee[numEmployee];
 		int sortedIndex = 0;
 
@@ -181,16 +181,19 @@ public class Company {
 				sortedIndex++;
 			}
 		}
+
+		String result = "";
 		for (int i = 0; i < sortedList.length; i++) {
-			System.out.println(sortedList[i].toString());
+			result += "\n" + sortedList[i].toString();
 		}
+		return result;
 	}
 
 	/**
 	 * This function prints earning statements by date hired in ascending order
 	 */
-	public void printByDate() {
-		System.out.println("--Printing earning statements by date hired--");
+	public String printByDate() {
+		//System.out.println("--Printing earning statements by date hired--");
 		Employee sortedList[] = new Employee[numEmployee];
 		for (int i = 0; i < numEmployee; i++) {
 			sortedList[i] = emplist[i];
@@ -207,9 +210,11 @@ public class Company {
 			sortedList[j + 1] = key;
 		}
 
+		String result = "";
 		for (int i = 0; i < sortedList.length; i++) {
-			System.out.println(sortedList[i].toString());
+			result += "\n" + sortedList[i].toString();
 		}
+		return result;
 	}
 
 	/**

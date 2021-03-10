@@ -220,6 +220,58 @@ public class Controller {
     }
 
     @FXML
+    void doPaymentCalculation(ActionEvent event) {
+        if(!company.hasEmployee()) {
+            output += "\nEmployee Database is Empty!";
+            messageArea.setText(output);
+            return;
+        }
+        company.processPayments();
+        output += "\nPayment Calculation Completed!";
+        messageArea.setText(output);
+    }
+
+    @FXML
+    void exportFile(ActionEvent event) {
+
+    }
+
+    @FXML
+    void importFile(ActionEvent event) {
+
+    }
+
+    @FXML
+    void printAllEmployees(ActionEvent event) {
+        if(company.hasEmployee()){
+            output += "\n--Printing earning statements for all employees--" + company.print();
+        } else{
+            output += "\nEmployee Database is Empty!";
+        }
+        messageArea.setText(output);
+    }
+
+    @FXML
+    void printByDateHired(ActionEvent event) {
+        if(company.hasEmployee()){
+            output +="\n--Printing earning statements by date hired--" + company.printByDate();
+        } else{
+            output += "\nEmployee Database is Empty!";
+        }
+        messageArea.setText(output);
+    }
+
+    @FXML
+    void printByDept(ActionEvent event) {
+        if(company.hasEmployee()){
+            output += "\n--Printing earning statements by department--" + company.printByDepartment();
+        } else{
+            output += "\nEmployee Database is Empty!";
+        }
+        messageArea.setText(output);
+    }
+
+    @FXML
     void removeEmployee(ActionEvent event) {
 
     }
