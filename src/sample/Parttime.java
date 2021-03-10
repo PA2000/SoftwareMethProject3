@@ -10,7 +10,19 @@ public class Parttime extends Employee {
 	private float hourly_wage;
 	private float payment;
 	private int hoursWorked;
-	
+
+	/**
+	 * Constructor for Parrtime which initializes the profile using Employee, the super class, and the hours worked, and the wage
+	 * @param profile that is to be assigned to the Fulltime employee
+	 * @param hours that represent and are assigned to the hours worked
+	 */
+	public Parttime(Profile profile, float wage, int hours) {
+		super(profile);
+		this.hourly_wage = wage;
+		this.hoursWorked = hours;
+		calculatePayment();
+	}
+
 	/**
 	 * Constructor for Parrtime which initializes the profile using Employee, the super class, and the hours worked
 	 * @param profile that is to be assigned to the Fulltime employee
