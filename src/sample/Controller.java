@@ -145,17 +145,17 @@ public class Controller {
      */
     private boolean checkNameValid() {
         if(firstNameField.getText().equals("") && lastNameField.getText().equals("")){
-            output += "\nDont leave first name and last name empty!";
+            output += "\nDon't leave first name and last name empty!";
             messageArea.setText(output);
             return true;
         }
         if(firstNameField.getText().equals("")){
-            output += "\nDont leave first name empty!";
+            output += "\nDon't leave first name empty!";
             messageArea.setText(output);
             return true;
         }
         if(lastNameField.getText().equals("")){
-            output += "\nDont leave first name empty!s";
+            output += "\nDon't leave last name empty!";
             messageArea.setText(output);
             return true;
         }
