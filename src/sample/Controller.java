@@ -3,9 +3,15 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 
 /**
  * This class is the GUI representation of the PayrollProcessing that handles the proccessing for the numerous commands read in from the console.
@@ -13,6 +19,9 @@ import java.time.format.DateTimeFormatter;
  * @author Padmank Ambadipudi, Dimitri Victor
  */
 public class Controller {
+    public static final int MANAGER = 1;
+    public static final int DEPT_HEAD = 2;
+
     Company company = new Company();
 
     @FXML
@@ -281,7 +290,33 @@ public class Controller {
      */
     @FXML
     void exportFile(ActionEvent event) {
+        try {
+            FileChooser chooser = new FileChooser();
+            chooser.setTitle("Open Target File for the Export");
+            chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                    new FileChooser.ExtensionFilter("All Files", "*.*"));
+            Stage stage = new Stage();
+            File targeFile = chooser.showSaveDialog(stage); //get the reference of the target file
+            //write code to write to the file.
 
+            FileWriter fw = new FileWriter(targeFile);
+            String employees = company.print();
+
+            Scanner sc = new Scanner(employees);
+            while (sc.hasNext()){
+                String line = sc.nextLine();
+                fw.write(line);
+                fw.write("\n");
+            }
+
+            output += "\nFile Successfully Exported";
+            messageArea.setText(output);
+            fw.close();
+
+        } catch (Exception e) {
+            output += "\nCan't Create File";
+            messageArea.setText(output);
+        }
     }
 
     /**
@@ -290,7 +325,79 @@ public class Controller {
      */
     @FXML
     void importFile(ActionEvent event) {
+        try {
+            FileChooser chooser = new FileChooser();
+            chooser.setTitle("Open Source File for the Import");
+            chooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"),
+                    new FileChooser.ExtensionFilter("All Files", "*.*"));
+            Stage stage = new Stage();
+            File sourceFile = chooser.showOpenDialog(stage);
 
+            Scanner sc = new Scanner(sourceFile);
+
+            while(sc.hasNext()){
+                String line = sc.nextLine();
+                String[] lineParts = new String[6];
+                StringTokenizer st = new StringTokenizer(line, ",");
+
+                int index = 0;
+
+                while (st.hasMoreTokens()) {
+                    lineParts[index] = st.nextToken();
+                    index++;
+                }
+
+                Date date = new Date(lineParts[3]);
+                String department = lineParts[2];
+                String name = lineParts[1];
+
+                if(lineParts[0].equals("F")){
+
+                    String salary = lineParts[4];
+                    annualSalaryField.setText(salary);
+
+                    addFullTime(name,date,department);
+
+                    annualSalaryField.setText("");
+
+                }else if(lineParts[0].equals("P")){
+
+                    String rate = lineParts[4];
+
+                    hoursWorkedField.setText("0");
+                    rateField.setText(rate);
+
+                    addParttime(name,date,department);
+
+                    hoursWorkedField.setText("");
+                    rateField.setText("");
+
+                }else if(lineParts[0].equals("M")){
+
+                    String salary = lineParts[4];
+                    annualSalaryField.setText(salary);
+
+                    int management = Integer.parseInt(lineParts[5]);
+
+                    if(management == MANAGER) {
+                        role = "Manager";
+                    }else if(management == DEPT_HEAD) {
+                        role = "Department Head";
+                    }else {
+                        role = "Director";
+                    }
+
+                    addManagement(name,date,department);
+                    annualSalaryField.setText("");
+                }
+            }
+            output += "\nFile Imported";
+            messageArea.setText(output);
+            sc.close();
+        } catch (Exception e) {
+            output += "\ninvalid File";
+            messageArea.setText(output);
+        }
     }
 
     /**
