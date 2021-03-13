@@ -7,6 +7,11 @@ import javafx.scene.control.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * This class is the GUI representation of the PayrollProcessing that handles the proccessing for the numerous commands read in from the console.
+ * This is the user interface class that handles input and output. The features of this class use a company object
+ * @author Padmank Ambadipudi, Dimitri Victor
+ */
 public class Controller {
     Company company = new Company();
 
@@ -84,6 +89,10 @@ public class Controller {
     private String employeeType = "";
     private String role = "";
 
+    /**
+     * This function handles the event where the "Add Employee" button is clicked. Depending on the type of employee, different functions are called
+     * @param event the clicking of the button "Add Employee"
+     */
     @FXML
     void addEmployee(ActionEvent event) {
         String name = lastNameField.getText() + "," + firstNameField.getText();
@@ -119,6 +128,13 @@ public class Controller {
         //System.out.println("----------------");
     }
 
+    /**
+     * This function adds a full time employee to the employee database. It checks to make sure that all input is present and is valid,
+     * returning an error message if it is not
+     * @param name of the employee to be added
+     * @param date that the employee was hired
+     * @param department that the employee works in
+     */
     public void addFullTime(String name, Date date, String department){
         try{
             Float salary = Float.parseFloat(annualSalaryField.getText());
@@ -143,6 +159,13 @@ public class Controller {
         dateField.setValue(null);
     }
 
+    /**
+     * This function adds a part time employee to the employee database. It checks to make sure that all input is present and is valid,
+     * returning an error message if it is not
+     * @param name of the employee to be added
+     * @param date that the employee was hired
+     * @param department that the employee works in
+     */
     public void addParttime(String name, Date date, String department){
         int hours = 0;
         float wage = 0;
@@ -183,7 +206,19 @@ public class Controller {
         dateField.setValue(null);
     }
 
+    /**
+     * This function adds a management type employee to the employee database. It checks to make sure that all input is present and is valid,
+     * returning an error message if it is not
+     * @param name of the employee to be added
+     * @param date that the employee was hired
+     * @param department that the employee works in
+     */
     private void addManagement(String name, Date date, String department) {
+        if(role.equals("")){
+            output += "\nYou must select a management role";
+            messageArea.setText(output);
+            return;
+        }
         try{
             Float salary = Float.parseFloat(annualSalaryField.getText());
             if(salary < 0) {
@@ -207,6 +242,10 @@ public class Controller {
         dateField.setValue(null);
     }
 
+    /**
+     * This function clears all of the text fields as well as the TextArea that displays the output
+     * @param event the clicking of the button "Clear"
+     */
     @FXML
     void clearScreen(ActionEvent event) {
         firstNameField.setText("");
@@ -219,6 +258,11 @@ public class Controller {
         messageArea.setText(output);
     }
 
+    /**
+     * This function calculates the payments allotted to each employee in the database. It outputs a message of success if the
+     * command was successful, and a message indicating if there are no employees in the datbase otherwise.
+     * @param event the clicking of the button "Calculate Payment"
+     */
     @FXML
     void doPaymentCalculation(ActionEvent event) {
         if(!company.hasEmployee()) {
@@ -231,16 +275,28 @@ public class Controller {
         messageArea.setText(output);
     }
 
+    /**
+     * This function exports the current Employee database represented as printed output into a text file.
+     * @param event the export file button is clicked
+     */
     @FXML
     void exportFile(ActionEvent event) {
 
     }
 
+    /**
+     * This function imports a file that contains commands and processes them.
+     * @param event the export file button is clicked
+     */
     @FXML
     void importFile(ActionEvent event) {
 
     }
 
+    /**
+     * This function prints out the employees in the database in the order they appear within the database.
+     * @param event the print button is clicked
+     */
     @FXML
     void printAllEmployees(ActionEvent event) {
         if(company.hasEmployee()){
@@ -251,6 +307,10 @@ public class Controller {
         messageArea.setText(output);
     }
 
+    /**
+     * This function prints out the employees in the database in ascending order of the date they were hired.
+     * @param event the print button is clicked
+     */
     @FXML
     void printByDateHired(ActionEvent event) {
         if(company.hasEmployee()){
@@ -261,6 +321,10 @@ public class Controller {
         messageArea.setText(output);
     }
 
+    /**
+     * This function prints out the employees in the database in ascending order of their department.
+     * @param event the print button is clicked
+     */
     @FXML
     void printByDept(ActionEvent event) {
         if(company.hasEmployee()){
@@ -271,31 +335,56 @@ public class Controller {
         messageArea.setText(output);
     }
 
+    /**
+     * This function removes a specififed employee from the databse. It outputs an error message if the employee does not
+     * exist or input is incorrect/missing, or a success message if the employee was removed
+     * @param event
+     */
     @FXML
     void removeEmployee(ActionEvent event) {
 
     }
 
+    /**
+     * This function updates the variable that keeps track of what department the user has currently selected and sets it to CS
+     * @param event the CS radio button is selected
+     */
     @FXML
     void selectCS(ActionEvent event) {
         department = "CS";
     }
 
+    /**
+     * This function updates the variable that keeps track of what management role the user has currently selected and sets it to Department Head
+     * @param event the department head radio button was selected
+     */
     @FXML
     void selectDeptHead(ActionEvent event) {
         role = "Department Head";
     }
 
+    /**
+     * This function updates the variable that keeps track of what management role the user has currently selected and sets it to Director
+     * @param event Director radio button was selected
+     */
     @FXML
     void selectDirector(ActionEvent event) {
         role = "Director";
     }
 
+    /**
+     * This function updates the variable that keeps track of what department the user has currently selected and sets it to ECE
+     * @param event the ECE radio button is selected
+     */
     @FXML
     void selectECE(ActionEvent event) {
         department = "ECE";
     }
 
+    /**
+     * This function updates the variable keeping track of the employee type and disables all options that do not belong to a Fulltime Employee
+     * @param event fulltime radio button selected
+     */
     @FXML
     void selectFullTime(ActionEvent event) {
         employeeType = "F";
@@ -303,16 +392,28 @@ public class Controller {
         disableManagementButtons();
     }
 
+    /**
+     * This function updates the variable that keeps track of what department the user has currently selected and sets it to IT
+     * @param event the IT radio button is selected
+     */
     @FXML
     void selectIT(ActionEvent event) {
         department = "IT";
     }
 
+    /**
+     * This function updates the variable that keeps track of what management role the user has currently selected and sets it to Manager
+     * @param event Manager radio button was selected
+     */
     @FXML
     void selectManager(ActionEvent event) {
         role = "Manager";
     }
 
+    /**
+     * This function updates the variable keeping track of the employee type and disables all options that do not belong to a Management Employee
+     * @param event management radio button selected
+     */
     @FXML
     void selectMangement(ActionEvent event) {
         employeeType = "M";
@@ -321,6 +422,10 @@ public class Controller {
         enableManagementButtons();
     }
 
+    /**
+     * This function updates the variable keeping track of the employee type and disables all options that do not belong to a parttime Employee
+     * @param event parttime radio button selected
+     */
     @FXML
     void selectPartTime(ActionEvent event) {
         employeeType = "P";
@@ -328,6 +433,11 @@ public class Controller {
         disableManagementButtons();
     }
 
+    /**
+     * This function sets the working hours for a specified employee in the databse. An error message is displayed if the databse is empty,
+     * if the employee isn't parttime, or if the necessary inputs are empty. It returns a success message otherwise
+     * @param event
+     */
     @FXML
     void setHours(ActionEvent event) {
         int hours = 0;
@@ -382,24 +492,36 @@ public class Controller {
         }
     }
 
+    /**
+     * This function disables all the payfields that are meant ONLY for parttime employees
+     */
     public void disablePayFields(){
         hoursWorkedField.setDisable(true);
         rateField.setDisable(true);
         annualSalaryField.setDisable(false);
     }
 
+    /**
+     * This function enables, or re-enables the payfield buttons that are meant ONLY for parttime employees
+     */
     public void enablePayFields(){
         hoursWorkedField.setDisable(false);
         rateField.setDisable(false);
         annualSalaryField.setDisable(true);
     }
 
+    /**
+     * This function disables all the management buttons that are meant ONLY for managment employees
+     */
     public void disableManagementButtons(){
         managerButton.setDisable(true);
         deptHeadButton.setDisable(true);
         directorButton.setDisable(true);
     }
 
+    /**
+     * This function enables, or re-enables the management buttons
+     */
     public void enableManagementButtons(){
         managerButton.setDisable(false);
         deptHeadButton.setDisable(false);
