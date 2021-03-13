@@ -104,6 +104,9 @@ public class Controller {
      */
     @FXML
     void addEmployee(ActionEvent event) {
+        if(checkNameValid()){
+            return;
+        }
         String name = lastNameField.getText() + "," + firstNameField.getText();
         String pattern = "M/dd/YYYY";
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
@@ -115,10 +118,13 @@ public class Controller {
         } else {
             String d = dateFormatter.format(dateField.getValue());
             Date date = new Date(d);
-            System.out.println(date.toString());
 
             if(date.isValid() == false) {
                 output += "\nPlease enter a valid date! (mm/dd/yyyy)";
+                messageArea.setText(output);
+            }
+            else if(department.equals("")){
+                output += "\nPlease select a department!";
                 messageArea.setText(output);
             }
             else if(employeeType.equals("F")){ //NEED TO CHECK NEGATIVE VALUES FOR SALARIES
@@ -131,10 +137,29 @@ public class Controller {
                 addManagement(name, date, department);
             }
         }
-        //dateField.setValue(null);
-        //System.out.println("----------------");
-        //messageArea.setText(company.print());
-        //System.out.println("----------------");
+    }
+
+    /**
+     * This function checks to make sure the name fields are not empty
+     * @return true if one or both of the name fields are empty, false otherwise
+     */
+    private boolean checkNameValid() {
+        if(firstNameField.getText().equals("") && lastNameField.getText().equals("")){
+            output += "\nDont leave first name and last name empty!";
+            messageArea.setText(output);
+            return true;
+        }
+        if(firstNameField.getText().equals("")){
+            output += "\nDont leave first name empty!";
+            messageArea.setText(output);
+            return true;
+        }
+        if(lastNameField.getText().equals("")){
+            output += "\nDont leave first name empty!s";
+            messageArea.setText(output);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -449,7 +474,45 @@ public class Controller {
      */
     @FXML
     void removeEmployee(ActionEvent event) {
+        if(!company.hasEmployee()) {
+            output += "\nEmployee database is empty.";
+            messageArea.setText(output);
+            return;
+        }
+        if(checkNameValid()){
+            return;
+        }
+        String name = lastNameField.getText() + "," + firstNameField.getText();
+        String pattern = "M/dd/YYYY";
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
 
+        if(dateField.getValue() == null){
+            output += "\nPlease don't leave the date field blank!";
+            messageArea.setText(output);
+        } else {
+            String d = dateFormatter.format(dateField.getValue());
+            Date date = new Date(d);
+
+            if (date.isValid() == false) {
+                output += "\nPlease enter a valid date! (mm/dd/yyyy)";
+                messageArea.setText(output);
+                return;
+            }
+            else if(department.equals("")){
+                output += "\nPlease select a department!";
+                messageArea.setText(output);
+                return;
+            }
+            else{
+                Profile profile = new Profile(name, department, date);
+                if(company.remove(new Employee(profile))) {
+                    output += "\nEmployee removed.";
+                }else {
+                    output += "\n\"Employee does not exist in database!";
+                }
+                messageArea.setText(output);
+            }
+        }
     }
 
     /**
@@ -541,12 +604,17 @@ public class Controller {
     }
 
     /**
-     * This function sets the working hours for a specified employee in the databse. An error message is displayed if the databse is empty,
+     * This function sets the working hours for a specified employee in the database. An error message is displayed if the databse is empty,
      * if the employee isn't parttime, or if the necessary inputs are empty. It returns a success message otherwise
      * @param event
      */
     @FXML
     void setHours(ActionEvent event) {
+        if(!employeeType.equals("P")){
+            output += "\nCan only set hours for parttime employee!";
+            messageArea.setText(output);
+            return;
+        }
         int hours = 0;
         if(!company.hasEmployee()) {
             output += "\nEmployee database is empty.";
